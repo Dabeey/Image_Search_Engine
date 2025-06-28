@@ -29,16 +29,18 @@ async function searchImages(){
         imageLink.appendChild(img);
         searchResult.appendChild(imageLink);
     });
-    if (results.length === 0) {
-        searchResult.innerHTML = '<p>No images found.</p>';
-    }
-    if (page === 1) {
-        searchResult.innerHTML = '';
-    }
+
+    showMoreBtn.style.display = 'block';
+    
 }
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
     page = 1; // Reset page number on new search
+    searchImages();
+});
+
+showMoreBtn.addEventListener('click', () => {
+    page++;
     searchImages();
 });
