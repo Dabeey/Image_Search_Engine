@@ -55,3 +55,15 @@ form button{
 ::placeholder{
     color: #fff;
 }
+
+#show-more-btn{
+    background: #ff3929;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin: 10px auto 100px;
+    cursor: pointer;
+    display: none;
+}
