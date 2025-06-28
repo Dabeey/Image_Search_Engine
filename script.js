@@ -7,14 +7,31 @@ const showMoreBtn = document.getElementById('show-more-btn');
 
 let keyword = '';
 let page = 1;
+const accesskey = 'INVXwxOQC1oSawFAAYSlPnHF5xODhluVILLtUUT6Pt4'
 
 async function searchImages(){
     keyword = searchBox.value;
-    const url = `https://api.unsplash.com/search/photos?page=${page}&query=${keyword}&client_id=${accesskey}`;
+    const url = `https://api.unsplash.com/search/photos?page=${page}&query=${keyword}&client_id=${accesskey}&per_page=12`;
 
     const response = await fetch(url);
     const data = await response.json();
 
+    const results = data.results;
+
+    results.map((result) => {
+        const img = document.createElement('img');
+        img.src = result.urls.small;
+        img.alt = result.alt_description || 'Image';
+        const imageLink = document.createElement('a');
+        imageLink.href = result.links.html;
+        imageLink.target = '_blank';
+
+        imageLink.appendChild(img);
+        searchResult.appendChild(imageLink);
+    });
+    if (results.length === 0) {
+        searchResult.innerHTML = '<p>No images found.</p>';
+    }
     if (page === 1) {
         searchResult.innerHTML = '';
     }
