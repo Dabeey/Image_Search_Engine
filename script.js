@@ -5,11 +5,11 @@ const showMoreBtn = document.getElementById('show-more-btn');
 
 let keyword = '';
 let page = 1;
-const accesskey = 'INVXwxOQC1oSawFAAYSlPnHF5xODhluVILLtUUT6Pt4';
 
 function showMessage(msg) {
     searchResult.innerHTML = `<div class="message">${msg}</div>`;
 }
+
 
 async function searchImages() {
     keyword = searchBox.value.trim();
@@ -19,7 +19,7 @@ async function searchImages() {
         return;
     }
 
-    const url = `https://api.unsplash.com/search/photos?page=${page}&query=${encodeURIComponent(keyword)}&client_id=${accesskey}&per_page=12`;
+    const url = `http://localhost:3000/api/search?query=${encodeURIComponent(keyword)}&page=${page}`;
 
     // Show loading indicator
     if (page === 1) {
@@ -38,7 +38,22 @@ async function searchImages() {
             searchResult.innerHTML = '';
         }
 
+        // Add this check:
+        if (!data.results || !Array.isArray(data.results)) {
+            showMessage('Failed to fetch images. Please try again.');
+            showMoreBtn.style.display = 'none';
+            return;
+        }
+
         const results = data.results;
+
+
+        if (results.length === 0 && page === 1) {
+            showMessage('No images found.');
+            showMoreBtn.style.display = 'none';
+            return;
+        }
+
 
         if (results.length === 0 && page === 1) {
             showMessage('No images found.');
@@ -70,6 +85,7 @@ async function searchImages() {
         showMoreBtn.style.display = 'none';
     }
 }
+
 
 searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
