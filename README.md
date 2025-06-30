@@ -49,9 +49,3 @@ A simple web app to search and browse images using the Unsplash API.
 ## License
 
 MIT
-
-
-Yasss! 💅✨ Just dropped project 9/10 for my #10JSProjects challenge – an Image Search Engine powered by Unsplash!
-One more to go and I’m DONE! 🔥
-Go check it out and let me know what you think!
-#JavaScript #WebDev #BaddieDev #WomenW
