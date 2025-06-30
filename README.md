@@ -1,6 +1,6 @@
 # Image Search Engine
 
-![Banner](https://your-image-url.com/banner.png)
+![Banner](banner.png)
 
 A simple web app to search and browse images using the Unsplash API.
 
