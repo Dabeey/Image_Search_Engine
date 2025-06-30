@@ -69,7 +69,13 @@ async function searchImages() {
             imageLink.href = result.links.html;
             imageLink.target = '_blank';
             imageLink.appendChild(img);
-            searchResult.appendChild(imageLink);
+
+            // Wrap in a container div
+            const imageItem = document.createElement('div');
+            imageItem.className = 'image-item';
+            imageItem.appendChild(imageLink);
+
+            searchResult.appendChild(imageItem);
         });
 
         // Show or hide "Show More" button
